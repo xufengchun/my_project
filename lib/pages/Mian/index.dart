@@ -14,6 +14,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final List<Map<String, dynamic>> _pages = [
+    // 底部导航栏的配置项
     {
       'title': '首页',
       'icon': 'lib/assets/ic-public-home-normal.png',
@@ -36,6 +37,7 @@ class _MainPageState extends State<MainPage> {
     },
   ];
   List<BottomNavigationBarItem> _getTabBarWidgets() {
+    // 底部导航栏的配置项
     return List.generate(_pages.length, (index) {
       return BottomNavigationBarItem(
         icon: Image.asset(_pages[index]['icon'], width: 30, height: 30),
@@ -50,21 +52,30 @@ class _MainPageState extends State<MainPage> {
   }
 
   List<Widget> _getTabBarPages() {
-    return [HomeViewState(), ProViewState(), CartViewState(), MyViewState()];
+    return [
+      HomeViewState(),
+      ProViewState(),
+      CartViewState(),
+      MyViewState(),
+    ]; // 底部导航栏的页面
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: IndexedStack(index: _currentIndex, children: _getTabBarPages()),
+        child: IndexedStack(
+          index: _currentIndex,
+          children: _getTabBarPages(),
+        ), // 索引栈，用于切换页面
       ),
       bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        items: _getTabBarWidgets(),
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _currentIndex,
+        // 底部导航栏
+        showUnselectedLabels: true, // 是否显示未选中的标签
+        items: _getTabBarWidgets(), // 底部导航栏的配置项
+        selectedItemColor: Colors.black, // 选中项的颜色
+        unselectedItemColor: Colors.grey, // 未选中项的颜色
+        currentIndex: _currentIndex, // 当前选中项的索引
         onTap: (index) {
           setState(() {
             _currentIndex = index;
