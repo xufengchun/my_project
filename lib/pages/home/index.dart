@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_project/api/home.dart';
 import 'package:my_project/components/home/HmCategory.dart';
 import 'package:my_project/components/home/HmHot.dart';
 import 'package:my_project/components/home/HmMoreList.dart';
@@ -14,23 +15,23 @@ class HomeViewState extends StatefulWidget {
 }
 
 class __HomeViewStateState extends State<HomeViewState> {
-  final List<BannerItem> _banners = [
-    BannerItem(
-      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg',
-      '1',
-    ),
-    BannerItem(
-      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.png',
-      '2',
-    ),
-    BannerItem(
-      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg',
-      '3',
-    ),
+  List<BannerItem> _banners = [
+    // BannerItem(
+    //   'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg',
+    //   '1',
+    // ),
+    // BannerItem(
+    //   'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.png',
+    //   '2',
+    // ),
+    // BannerItem(
+    //   'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg',
+    //   '3',
+    // ),
   ];
   List<Widget> _getScrollChildren() {
     return [
-      SliverToBoxAdapter(child: Hmsilder(banners: _banners)),
+      SliverToBoxAdapter(child: Hmsilder(banners: _banners)), //轮播
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(child: Hmcategory()),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
@@ -57,6 +58,18 @@ class __HomeViewStateState extends State<HomeViewState> {
       // Hmhot(),
       // Hmmorelist(),
     ];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getBannderList();
+  }
+
+  void _getBannderList() async {
+    _banners = await getBannerListAPI();
+
+    setState(() {});
   }
 
   @override

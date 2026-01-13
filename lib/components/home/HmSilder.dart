@@ -93,6 +93,6 @@ class _HmsilderState extends State<Hmsilder> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [getSlider(), getSearch(), getDots()]);
+    return Stack(children: [getSlider(), getSearch(), getDots()]); //轮播图、搜索框、指示器
   }
 }
