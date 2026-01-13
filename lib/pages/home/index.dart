@@ -4,6 +4,7 @@ import 'package:my_project/components/home/HmHot.dart';
 import 'package:my_project/components/home/HmMoreList.dart';
 import 'package:my_project/components/home/HmSilder.dart';
 import 'package:my_project/components/home/HmSuggestion.dart';
+import 'package:my_project/viewmodels/home.dart';
 
 class HomeViewState extends StatefulWidget {
   HomeViewState({Key? key}) : super(key: key);
@@ -13,9 +14,23 @@ class HomeViewState extends StatefulWidget {
 }
 
 class __HomeViewStateState extends State<HomeViewState> {
+  final List<BannerItem> _banners = [
+    BannerItem(
+      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg',
+      '1',
+    ),
+    BannerItem(
+      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.png',
+      '2',
+    ),
+    BannerItem(
+      'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg',
+      '3',
+    ),
+  ];
   List<Widget> _getScrollChildren() {
     return [
-      SliverToBoxAdapter(child: Hmsilder()),
+      SliverToBoxAdapter(child: Hmsilder(banners: _banners)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(child: Hmcategory()),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
