@@ -15,6 +15,8 @@ class HomeViewState extends StatefulWidget {
 }
 
 class __HomeViewStateState extends State<HomeViewState> {
+  //分类列表
+  List<CategoryItem> _categories = [];
   List<BannerItem> _banners = [
     // BannerItem(
     //   'https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg',
@@ -33,7 +35,7 @@ class __HomeViewStateState extends State<HomeViewState> {
     return [
       SliverToBoxAdapter(child: Hmsilder(banners: _banners)), //轮播
       SliverToBoxAdapter(child: SizedBox(height: 10)),
-      SliverToBoxAdapter(child: Hmcategory()),
+      SliverToBoxAdapter(child: Hmcategory(categories: _categories)),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       SliverToBoxAdapter(child: Hmsuggestion()),
       SliverToBoxAdapter(child: SizedBox(height: 10)),
@@ -64,6 +66,14 @@ class __HomeViewStateState extends State<HomeViewState> {
   void initState() {
     super.initState();
     _getBannderList();
+    _getCategoryList();
+  }
+
+  //获取分类列表
+  void _getCategoryList() async {
+    _categories = await getCategoryListAPI();
+
+    setState(() {});
   }
 
   void _getBannderList() async {
